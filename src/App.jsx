@@ -1,6 +1,5 @@
 
 
-// File: App.jsx
 import React from 'react';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';

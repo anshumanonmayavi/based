@@ -1,9 +1,8 @@
-
-
-import React from 'react';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
 import Upload from './components/Upload';
+import './App.css';
+
 
 export default function App() {
   return (
@@ -14,10 +13,5 @@ export default function App() {
     </div>
   );
 }
-
-
-
-
-
 
 

@@ -1,6 +1,5 @@
-// File: components/Gallery.jsx
 import React, { useEffect, useState } from 'react';
-import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
+import { getDownloadURL, listAll, ref } from 'firebase/storage';
 import { storage } from '../firebase';
 
 export default function Gallery() {
@@ -10,7 +9,7 @@ export default function Gallery() {
     const fetchImages = async () => {
       const listRef = ref(storage, 'images/');
       const res = await listAll(listRef);
-      const urls = await Promise.all(res.items.map((itemRef) => getDownloadURL(itemRef)));
+      const urls = await Promise.all(res.items.map((item) => getDownloadURL(item)));
       setImages(urls);
     };
 
@@ -18,14 +17,13 @@ export default function Gallery() {
   }, []);
 
   return (
-    <section className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Gallery</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        {images.map((url, index) => (
-          <img key={index} src={url} alt={`Uploaded ${index}`} className="w-full h-64 object-cover rounded shadow" />
+    <section className="gallery-section">
+      <h2>Gallery</h2>
+      <div className="gallery-grid">
+        {images.map((url, i) => (
+          <img key={i} src={url} alt={`img-${i}`} />
         ))}
       </div>
     </section>
   );
 }
-
